@@ -1,21 +1,28 @@
 <?php
+include_once 'helper.php';
+// if $GET url param in link like index.php?url=abc@def@123 or abc/def/123
+// if page link index.php then 404
 
-require 'helper.php';
+$url = (isset($_GET['url'])) ? $_GET['url'] : 'base/index';
 
-$page = (isset($_GET['page'])) ? $_GET['page'] : 'home/index';
+$urlparmas = explode('/', $url);
 
-list($controller, $action) = explode('/', $page);
-
-
-
-$controller = ucfirst($controller) . 'Controller';
-
-
-require sprintf("%s\app\controller\%s.php ", dirname(dirname(__FILE__)), $controller);
+$controller = ucfirst($urlparmas[0]) . 'Controller';
+$method = isset($urlparmas[1]) ? $urlparmas[1] : 'index';
+$params = array_slice($urlparmas, 2);
 
 
-// $controllerInstance = new HomeController();
-// $controllerInstance->index();
+$path = dir_path() . "\app\controller\\{$controller}.php";
 
-$controllerInstance  = new $controller();
-$controllerInstance->{$action}();
+if (!file_exists($path)) {
+  echo "File does not exist";
+  exit;
+}
+
+require $path;
+
+
+
+$controller_object = new $controller();    //new HomeController();
+
+call_user_func_array(array($controller_object, $method), $params);

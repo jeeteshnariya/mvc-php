@@ -5,6 +5,10 @@
 class BaseController
 {
 
+  public function index(){
+    echo '404 Not Found';
+  }
+
   public function loadview($name, $data)
   {
     extract($data);

@@ -1,14 +1,16 @@
 <?php
 
-class HomeController{
+class HomeController
+{
 
-  public function index(){
+  public function index()
+  {
     // echo view();
- 
 
-  
-    
-    echo view();
+
+
+    echo   __METHOD__;
+    // echo view();
 
   }
 
@@ -17,8 +19,14 @@ class HomeController{
     echo 'create home  page';
   }
 
-  public function delete()
+  public function update($id = null)
   {
-    echo 'delete home  page';
+    echo 'create update  page' . $id;
+  }
+
+
+  public function delete($id = 0)
+  {
+    echo 'delete home  page' . $id;
   }
 }
