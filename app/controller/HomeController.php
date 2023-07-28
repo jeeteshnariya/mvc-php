@@ -3,7 +3,13 @@
 class HomeController{
 
   public function index(){
-    echo 'hellow from index page';
+    // echo view();
+ 
+
+  
+    
+    echo view();
+
   }
 
   public function create()

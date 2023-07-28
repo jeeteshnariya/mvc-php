@@ -1,14 +1,17 @@
 <?php
 
+require 'helper.php';
 
-list($controller, $action) = explode('/', $_GET['page']);
+$page = (isset($_GET['page'])) ? $_GET['page'] : 'home/index';
+
+list($controller, $action) = explode('/', $page);
 
 
 
-$controller = ucfirst($controller).'Controller';
+$controller = ucfirst($controller) . 'Controller';
 
 
-require sprintf("%s\app\controller\%s.php ",dirname(dirname(__FILE__)),$controller);
+require sprintf("%s\app\controller\%s.php ", dirname(dirname(__FILE__)), $controller);
 
 
 // $controllerInstance = new HomeController();

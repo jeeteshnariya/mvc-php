@@ -9,19 +9,20 @@
 </head>
 
 <body>
-  <h1><?php echo $msg; ?></h1>
+
+  <h1><?= $msg; ?></h1>
   <table>
     <tr>
       <th>Name</th>
     </tr>
     <?php foreach ($users as $user) : ?>
       <tr>
-        <td><?php echo $user['name']; ?></td>
+        <td><?= $user['name']; ?></td>
       </tr>
     <?php endforeach; ?>
 
   </table>
-  <h1><?php echo $id; ?></h1>
+  <h1><?= $id; ?></h1>
 
 </body>
 
