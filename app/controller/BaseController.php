@@ -6,7 +6,7 @@ class BaseController
 {
 
   public function index(){
-    echo '404 Not Found';
+     view('404');
   }
 
   public function loadview($name, $data)
