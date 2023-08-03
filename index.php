@@ -1,5 +1,5 @@
 <?php
-
+include 'helper.php';
 $mvc_path = __DIR__;
 
 
@@ -20,7 +20,7 @@ $other_params = array_slice($url_parmas, 2);       // ['id',45,77]
 // we use list function instead of this
 list($controller, $method ) = $first_two;  // $controller = 'base' and $method = 'index';
 
- 
+
 
 $controller = $controller.'controller';  // $controller = 'basecontroller';
 
