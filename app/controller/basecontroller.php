@@ -5,6 +5,7 @@
 class basecontroller
 {
   public function index(){
-    echo 'hello from base index';
+    $title = 'Welcome to our framework';
+    view('welcome',compact('title'));
   }
 }

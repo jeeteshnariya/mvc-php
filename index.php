@@ -5,7 +5,7 @@ $mvc_path = __DIR__;
 
 $get_url = (isset($_GET['url'])) ? $_GET['url'] : 'base/index/id/45/77';
 
-if(!str_contains($get_url, '/')){
+if (!str_contains($get_url, '/')) {
   echo 'Please provide a method name after controller like controller /  method name in url';
   exit;
 }
@@ -18,11 +18,11 @@ $other_params = array_slice($url_parmas, 2);       // ['id',45,77]
 // $controller = $first_two_params[0]; 
 // $method = $first_two_params[1];  
 // we use list function instead of this
-list($controller, $method ) = $first_two;  // $controller = 'base' and $method = 'index';
+list($controller, $method) = $first_two;  // $controller = 'base' and $method = 'index';
 
 
 
-$controller = $controller.'controller';  // $controller = 'basecontroller';
+$controller = $controller . 'controller';  // $controller = 'basecontroller';
 
 $filename =  $mvc_path .  "\app\controller\\{$controller}.php";
 
@@ -38,4 +38,7 @@ require $filename;
 
 // create that file class object and run method
 $object = new $controller();  // new basecontroller();
-$object->{$method}();   // $object->index();
+// $object->{$method}();   // $object->index();
+
+
+call_user_func_array(array($object, $method), $other_params);
