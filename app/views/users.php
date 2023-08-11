@@ -16,7 +16,7 @@
           <h2 class="text-xl font-medium text-gray-800 dark:text-white">Users</h2>
 
           <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-            <?= count($users) ?> vendors</span>
+            <?= count($users) ?> Users</span>
         </div>
 
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">These companies have purchased in the last 12 months.</p>
@@ -42,8 +42,10 @@
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
+          <a href="?url=users/show">
 
-          <span>Add vendor</span>
+            <span>Add Users</span>
+          </a>
         </button>
       </div>
     </div>
@@ -117,31 +119,26 @@
 
                   <tr>
                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"><?= $user['id'] ?></td>
-                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"><?= $user['name'] ?></td>
+                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"><?= $user['fullname'] ?></td>
                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"><?= $user['email'] ?></td>
 
                     <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
                       <div class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                        Customer
+                        <?= $user['status'] ?>
                       </div>
                     </td>
                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                       <div>
-                        <h4 class="text-gray-700 dark:text-gray-200">
 
-                          <?= $user['address']['street'] ?>
-                        </h4>
                         <p class="text-gray-500 dark:text-gray-400">
+                          <?= $user['address'] ?>
 
-                          <?= $user['address']['suite'] ?>,
-                          <?= $user['address']['city'] ?>,
-                          <?= $user['address']['zipcode'] ?>
 
                         </p>
                       </div>
                     </td>
                     <td>
-                      <?= $user['phone'] ?>
+                      <?= $user['contact'] ?>
                     </td>
 
                     <td class="px-4 py-4 text-sm whitespace-nowrap">
@@ -151,11 +148,11 @@
                     </td>
 
                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                     <button >
-                       <a href="<?= set_url('users/delete/'.$user['id'])?>" class="text-red-500 ">
-                         Delete  
-                    </a>
-                    </button>
+                      <button>
+                        <a href="<?= set_url('users/delete/' . $user['id']) ?>" class="text-red-500 ">
+                          Delete
+                        </a>
+                      </button>
                     </td>
                   </tr>
 

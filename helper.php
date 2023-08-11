@@ -23,3 +23,8 @@ function set_url($link)
   $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[SCRIPT_NAME]?url=" . $link;
   return $actual_link;
 }
+
+function dd($data = null) {
+  echo '<pre>'; print_r($data);
+  echo '</pre>';
+}
