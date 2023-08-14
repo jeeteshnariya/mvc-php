@@ -9,6 +9,10 @@
 
 <body>
   <!-- component -->
+
+  <?php 
+  dd($users);
+  ?>
   <section class="container px-4 mx-auto mt-[100px]">
     <div class="sm:flex sm:items-center sm:justify-between">
       <div>
@@ -148,11 +152,15 @@
                     </td>
 
                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                      <button>
-                        <a href="<?= set_url('users/delete/' . $user['id']) ?>" class="text-red-500 ">
-                          Delete
-                        </a>
-                      </button>
+
+                      <a href="<?= set_url(sprintf('users/edit/%s',$user['id'])) ?>" class="text-blue-500 font-bold ">
+                        Edit
+                      </a>
+
+                      <a href="<?= set_url('users/delete/' . $user['id']) ?>" class="text-red-500   font-bold  ml-1">
+                        Delete
+                      </a>
+
                     </td>
                   </tr>
 

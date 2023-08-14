@@ -8,14 +8,34 @@
 </head>
 
 <body>
+
+  <?php
+
+  if (isset($user)) {
+    // dd($user);
+
+    extract($user);
+  }
+  ?>
   <!-- component -->
   <section class="container px-4 mx-auto mt-[100px]">
 
 
-    <form method="post"  action="?url=users/create" class="bg-white rounded   p-4 px-4 md:p-8 mb-6">
+    <form method="post" action="?url=users/create" class="bg-white rounded   p-4 px-4 md:p-8 mb-6">
       <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
         <div class="text-gray-600">
-          <h1 class="text-3xl font-bold">Add User <?= $id ?></h1>
+          <h1 class="text-3xl font-bold">
+            <?php
+            if (is_null($id)) {
+              echo "Add User";
+            } else {
+              echo "Edit User /";;
+            }
+
+            ?>
+
+
+            <?= $id ?></h1>
           <p class="font-medium text-lg">Personal Details</p>
           <p>Please fill out all the fields.</p>
         </div>
@@ -24,17 +44,17 @@
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
             <div class="md:col-span-5">
               <label for="fullname">Full Name</label>
-              <input type="text" name="fullname" id="fullname" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+              <input type="text" name="fullname" id="fullname" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="<?= isset($fullname) ? $fullname : '' ?>" />
             </div>
 
             <div class="md:col-span-2">
               <label for="email">Email Address</label>
-              <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+              <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="<?= isset($email) ? $email : '' ?>" placeholder="email@domain.com" />
             </div>
 
             <div class="md:col-span-1">
               <label for="contact">Contact</label>
-              <input type="text" name="contact" id="contact" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="+91 9876543210" />
+              <input type="text" name="contact" id="contact" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="<?= isset($contact) ? $contact : '' ?>" placeholder="+91 9876543210" />
             </div>
 
             <div class="md:col-span-2">
@@ -44,7 +64,7 @@
 
             <div class="md:col-span-3">
               <label for="address">Address / Street</label>
-              <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+              <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="<?= isset($address) ? $address : '' ?>" placeholder="" />
             </div>
 
             <div class="md:col-span-2">
@@ -119,6 +139,14 @@
 
             <div class="md:col-span-5 text-right">
               <div class="inline-flex items-end">
+
+                <button class="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded mr-2">
+                  <a href="<?= set_url('users/index') ?>">
+
+                    Cancle
+
+                  </a>
+                </button>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit"> Submit</button>
               </div>
             </div>

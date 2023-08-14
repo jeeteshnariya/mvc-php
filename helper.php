@@ -1,7 +1,7 @@
 <?php
 
 
-function view($name = 'welcome', $data =null)
+function view($name = 'welcome', $data = null)
 {
   // var_dump($data);
   extract($data);
@@ -24,7 +24,9 @@ function set_url($link)
   return $actual_link;
 }
 
-function dd($data = null) {
-  echo '<pre>'; print_r($data);
+function dd($data = null)
+{
+  echo '<pre class="bg-gray-100 text-sm border rounded m-48 p-4 text-red-700">';
+  var_export($data);
   echo '</pre>';
 }

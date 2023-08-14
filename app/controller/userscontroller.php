@@ -14,9 +14,8 @@ class userscontroller
 
   public function index()
   {
-
     $users =  $this->user_model->get_all();
-
+ 
     view('users', compact('users'));
   }
 
@@ -25,10 +24,15 @@ class userscontroller
     view('adduser', compact('id'));
   }
 
+  public function edit($id = null){
+
+    $user = $this->user_model->get_by($id);
+    view('adduser', compact('id', 'user'));
+
+  }
 
   public function create()
   {
-
 
     $data = [
 
