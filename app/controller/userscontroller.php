@@ -7,16 +7,17 @@ class userscontroller
   public function __construct()
   {
 
-    // use model function for load model folder model name
-    model('user');
-    $this->user_model = new User();
+    $this->user_model = model('user');
   }
 
   public function index()
   {
-    $users =  $this->user_model->get_all();
- 
-    view('users', compact('users'));
+    $search = isset($_POST['search']) ? $_POST['search'] : '';
+
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $data =  $this->user_model->paginate($page,6 ,$search);
+
+    renderView('users/index', ['data' => $data], 'layout/admin');
   }
 
   public function show($id = null)
@@ -24,11 +25,11 @@ class userscontroller
     view('adduser', compact('id'));
   }
 
-  public function edit($id = null){
+  public function edit($id = null)
+  {
 
     $user = $this->user_model->get_by($id);
     view('adduser', compact('id', 'user'));
-
   }
 
   public function create()

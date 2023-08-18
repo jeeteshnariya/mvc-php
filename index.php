@@ -38,7 +38,7 @@ require $filename;
 
 // create that file class object and run method
 $object = new $controller();  // new basecontroller();
-// $object->{$method}();   // $object->index();
+// $object->{$method}($other_params[0], $other_params[1]);   // $object->index($parmas,$second);
 
 
 call_user_func_array(array($object, $method), $other_params);

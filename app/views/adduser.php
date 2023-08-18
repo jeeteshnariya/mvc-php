@@ -21,7 +21,7 @@
   <section class="container px-4 mx-auto mt-[100px]">
 
 
-    <form method="post" action="?url=users/create" class="bg-white rounded   p-4 px-4 md:p-8 mb-6">
+    <form method="post" action="<?= set_url('users/create') ?>" class="bg-white rounded   p-4 px-4 md:p-8 mb-6">
       <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
         <div class="text-gray-600">
           <h1 class="text-3xl font-bold">
