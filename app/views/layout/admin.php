@@ -8,8 +8,33 @@
 </head>
 
 <body>
+  <div class=" bg-slate-100 font-semibold">
+
+    <nav class="container mx-auto flex p-6 justify-between">
+
+      <span>
+        <a href="<?= set_url('users/index') ?>">Dashboard</a>
+      </span>
+
+
+      <span class="space-x-6">
+        <a href="<?= set_url('users/index') ?>">Users</a>
+        <a href="<?= set_url('doctors/index') ?>">Doctor</a>
+        <a href="<?= set_url('department/index') ?>">Department</a>
+
+      </span>
+
+
+      <span>
+        <a href="<?= set_url('auth/logout') ?>">Logout</a>
+      </span>
+
+    </nav>
+  </div>
+
   <section class="container px-4 mx-auto mt-[100px]">
-    {{children}}
+    {{child}}
   </section>
 </body>
+
 </html>

@@ -8,6 +8,6 @@
 </head>
 
 <body>
-  {{children}}
+  {{child}}
 </body>
 </html>

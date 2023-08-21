@@ -1,15 +1,7 @@
 <?php
 
 
-function view($name = 'welcome', $data = null)
-{
-  // var_dump($data);
-  if (!is_null($data)) {
 
-    extract($data);
-  }
-  include_once sprintf('%s\app\views\%s.php', __DIR__, $name);
-}
 
 function model($model_name)
 {
@@ -29,7 +21,8 @@ function set_url($link)
 
 function redirect($link)
 {
-  header('Location:' . set_url($link));
+  header('Location:' . set_url($link),false);
+  // exit;
 }
 
 function dd($data = null)
@@ -40,35 +33,30 @@ function dd($data = null)
   echo '</pre>';
 }
 
+ 
 
-function renderView($viewName, $data = [], $layout = null)
-{
-  $viewPath = sprintf('%s\app\views\%s.php', __DIR__, $viewName);
+function render($viewName,$data = [], $layout = '{{child}}'){
+  $content = load_view($viewName, $data);
 
-  if ($layout !== null) {
-    $layoutPath = sprintf('%s\app\views\%s.php', __DIR__, $layout);
-
-    if (file_exists($layoutPath)) {
-      extract($data);
-
-      // Start capturing the output into a buffer
-      ob_start();
-      include $viewPath; // Include the view file
-      $content = ob_get_clean(); // Capture the buffered content and clear the buffer
-
-      // Start capturing the output again for the layout
-      ob_start();
-      include $layoutPath; // Include the layout file
-      echo str_replace('{{children}}', $content, ob_get_clean()); // Replace placeholder with content and output
-    } else {
-      throw new Exception("Layout file not found: $layoutPath");
-    }
-  } else {
-    extract($data);
-
-    // Start capturing the output into a buffer
-    ob_start();
-    include $viewPath; // Include the view file
-    echo ob_get_clean(); // Output the captured content and clear the buffer
+  if($layout !== '{{child}}') {
+    $layout = load_view($layout);
   }
+
+ 
+
+  echo str_replace('{{child}}',   $content, $layout);
 }
+
+
+function load_view($file_path, $data=[])
+{
+  $viewPath = sprintf('%s\app\views\%s.php', __DIR__, $file_path);
+
+  extract($data);
+  ob_start();
+  include_once $viewPath;
+  return  ob_get_clean();
+}
+
+
+ 

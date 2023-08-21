@@ -1,12 +1,12 @@
 <?php
-
-class userscontroller
+include 'basecontroller.php';
+class userscontroller extends basecontroller
 {
   public $user_model;
 
   public function __construct()
   {
-
+    parent::__construct();
     $this->user_model = model('user');
   }
 
@@ -15,21 +15,21 @@ class userscontroller
     $search = isset($_POST['search']) ? $_POST['search'] : '';
 
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $data =  $this->user_model->paginate($page,6 ,$search);
+    $data =  $this->user_model->paginate($page, 6, $search);
 
-    renderView('users/index', ['data' => $data], 'layout/admin');
+    render('users/index', ['data' => $data], 'layout/admin');
   }
 
   public function show($id = null)
   {
-    view('adduser', compact('id'));
+    render('users/form', ['id' => $id], 'layout/admin');
   }
 
   public function edit($id = null)
   {
 
     $user = $this->user_model->get_by($id);
-    view('adduser', compact('id', 'user'));
+    render('users/form', ['id' => $id, 'user' => $user], 'layout/admin');
   }
 
   public function create()
@@ -48,8 +48,7 @@ class userscontroller
     $result = $this->user_model->create($data);
 
     if ($result) {
-      header('Location: ?url=users/index');
-      exit;
+      redirect('users/index');
     }
   }
 
@@ -59,8 +58,7 @@ class userscontroller
     $result =  $this->user_model->delete($id);
 
     if ($result) {
-      header('Location: ?url=users/index');
-      exit;
+      redirect('users/index');
     }
   }
 }
