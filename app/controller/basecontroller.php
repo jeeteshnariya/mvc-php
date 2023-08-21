@@ -8,7 +8,8 @@ class basecontroller
   public function __construct()
   {
 
-    if ($_SESSION["login"] !== true) {
+    $login = isset($_SESSION["login"]) ? $_SESSION["login"] : false;
+    if ($login !== true && $GLOBALS['default_viewpath'] !== null) {
       redirect('auth/login');
     }
   }
@@ -17,6 +18,12 @@ class basecontroller
   public function index()
   {
     $title = 'Welcome to our framework';
-    render('welcome', compact('title'));
+
+    if ($GLOBALS['default_viewpath'] == null) {
+
+      render('welcome', compact('title'));
+    } else {
+      redirect($GLOBALS['default_viewpath']);
+    }
   }
 }

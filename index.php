@@ -1,7 +1,8 @@
 <?php
 session_start();
-
+include 'config.php';
 include 'helper.php';
+
 $mvc_path = __DIR__;
 
 

@@ -9,12 +9,10 @@ class db {
 
   public function __construct()
   {
-    $servername = "localhost";
-    $username = "root";
-    $password = "abcxyz";
+   
 
     // Create connection
-    $this->conn = new mysqli($servername, $username, $password,'mvcdata');
+    $this->conn = new mysqli($GLOBALS['host'], $GLOBALS['user'], $GLOBALS['password'], $GLOBALS['dbname']);
 
     // Check connection
     if ($this->conn->connect_error) {
