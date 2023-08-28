@@ -19,8 +19,8 @@
 
       <span class="space-x-6">
         <a href="<?= set_url('users/index') ?>">Users</a>
-        <a href="<?= set_url('doctors/index') ?>">Doctor</a>
-        <a href="<?= set_url('department/index') ?>">Department</a>
+        <a href="<?= set_url('products/index') ?>">Product</a>
+    
 
       </span>
 

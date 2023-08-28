@@ -27,20 +27,20 @@ class db
     return $this->conn->query("SELECT COUNT(id) FROM $this->table_name")->fetch_column();
   }
 
-  public function paginate($page_no = 1, $limit = 5, $search = '')
+  public function paginate($page_no = 1, $limit = 5, $search = '',$coloum ='fullname')
   {
 
     $total_records = $this->total();
     $total_pages = ceil($total_records / $limit);
 
     $start_from = ($page_no - 1) * $limit;
-    $rows = $this->conn->query("SELECT * FROM $this->table_name WHERE fullname LIKE '%$search%'	ORDER BY id DESC LIMIT  $start_from, $limit")->fetch_all(MYSQLI_ASSOC);
+    $rows = $this->conn->query("SELECT * FROM $this->table_name WHERE $coloum LIKE '%$search%'	ORDER BY id DESC LIMIT  $start_from, $limit")->fetch_all(MYSQLI_ASSOC);
 
     $data = [
       'page_no' => $page_no,
       'total' => $total_records,
       'total_pages' => $total_pages,
-      'users' => $rows
+      'rows' => $rows
     ];
 
     return $data;

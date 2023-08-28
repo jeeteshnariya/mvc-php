@@ -78,7 +78,7 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-              <?php foreach ($users as $user) : ?>
+              <?php foreach ($rows as $user) : ?>
 
                 <tr>
                   <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"><?= $user['id'] ?></td>

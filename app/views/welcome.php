@@ -10,6 +10,19 @@
 
 <body>
   <h1><?php echo $data['title'] ?></h1>
+ 
+
+  <section class="container grid grid-cols-4 gap-4 mt-12">
+    <?php foreach ($data['rows'] as $product) : ?>
+
+      <div class="product bg-gray-100">
+        <img src="<?= $product['image'] ?>" alt="" class="w-full">
+        <p class="text-xl"><?= $product['name'] ?></p>
+        <p class="text-base"><?= $product['detail'] ?></p>
+      </div>
+    <?php endforeach; ?>
+
+  </section>
 </body>
 
 </html>
